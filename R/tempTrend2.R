@@ -1,3 +1,7 @@
+#' Long term local climate trends
+#'
+#' Can take variable number of years and has terra functionality
+#'
 #' @param r spatraster, each layer represents one year
 #' @param years vector of years from first year to n year represented by climate data (e.g., c(2000,2020))
 #' @param th number of years required to calculate regression
