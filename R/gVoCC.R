@@ -8,8 +8,8 @@
 #' @param tempTrend The output from the tempTrend function containing the long-term linear climatic trends.
 #' @param spatGrad The output from the spatGrad function containing the magnitudes and angles for the spatial climatic gradient.
 #'
-#' @return A \code{RasterStack} containing the climate velocity magnitude ("voccMag",
-#' km/yr for unprojected rasters and spatial unit/year for projected rasters) and angle("voccAng" in 
+#' @return A \code{spatRaster} containing the climate velocity magnitude ("voccMag",
+#' km/yr for unprojected rasters and spatial unit/year for projected rasters) and angle("voccAng" in
 #' degrees north: 0N, 90E, 180S and 270W).
 #'
 #' @references \href{http://science.sciencemag.org/content/334/6056/652}{Burrows et al. 2011}. The pace of shifting climate
@@ -38,11 +38,11 @@
 gVoCC <- function(tempTrend, spatGrad){
 VoCC <- tempTrend[[1]]/spatGrad[[1]]
 # velocity angles have opposite direction to the spatial climatic gradient if warming and same direction (cold to warm) if cooling
-ind <- which(getValues(VoCC) > 0)
+ind <- which(values(VoCC) > 0)
 VoCCang <- spatGrad[[2]]
 VoCCang[ind] <- spatGrad[[2]][ind] + 180
 VoCCang[] <- ifelse(VoCCang[] >= 360, VoCCang[] - 360, VoCCang[])
-output <- stack(VoCC,VoCCang)
+output <- c(VoCC,VoCCang)
 names(output) <- c("voccMag", "voccAng")
 return(output)
 }
