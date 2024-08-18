@@ -46,7 +46,7 @@ spatGrad <- function(r, th = -Inf, projected = FALSE){
   # Create a columns for focal and each of its 8 adjacent cells
   y <- data.table(raster::adjacent(r, 1:ncell(r), directions = 8, pairs = TRUE))
   y <- na.omit(y[, climFocal := values(r)[from]][order(from, to)])   # Get value for focal cell, order the table by raster sequence and omit NAs (land cells)
-  y[, clim := valuesalues(r)[to]] # Insert values for adjacent cells
+  y[, clim := values(r)[to]] # Insert values for adjacent cells
   y[, sy := rowFromCell(r, from)-rowFromCell(r, to)]  # Column to identify rows in the raster (N = 1, mid = 0, S = -1)
   y[, sx := colFromCell(r, to)-colFromCell(r, from)]  # Same for columns (E = 1, mid = 0, W = -1)
   y[sx > 1, sx := -1]   # Sort out the W-E wrap at the dateline, part I
