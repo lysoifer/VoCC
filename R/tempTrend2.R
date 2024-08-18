@@ -1,6 +1,8 @@
 #' @param r spatraster, each layer represents one year
 #' @param years vector of years from first year to n year represented by climate data (e.g., c(2000,2020))
 #' @param th number of years required to calculate regression
+#'
+#' @export
 temptrend = function(r, years, th) {
   notna = sum(!is.na(r)) # sum na values across temporal layers
   # if there aren't enough cells (by th), classify as NA
