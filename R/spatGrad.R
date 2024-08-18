@@ -40,7 +40,7 @@
 #' @rdname spatGrad
 
 spatGrad <- function(r, th = -Inf, projected = FALSE){
-  if(terra::nlyrs(r) > 1){r <- mean(r, na.rm=T)}
+  if(terra::nlyr(r) > 1){r <- mean(r, na.rm=T)}
   # get resolution of the raster
   re <- raster::res(r)
   # Create a columns for focal and each of its 8 adjacent cells
