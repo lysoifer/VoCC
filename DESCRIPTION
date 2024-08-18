@@ -27,6 +27,7 @@ Imports: CircStats,
     rgdal,
     sp,
     stats,
+    terra,
     xts
 Suggests: ggplot2,
     gridExtra,
