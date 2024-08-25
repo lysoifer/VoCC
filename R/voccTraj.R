@@ -343,7 +343,7 @@ voccTraj <- function(lonlat, vel, ang, mn, tyr, trajID = 1:nrow(lonlat), correct
         vleft <- v[!empty]
         aleft <- a[!empty]
         # Check if there is an actual suitable neighbour
-        sst <- lapply(leftcell, function(x) mn[x])   # sst at focal and neighbouring cells
+        sst <- lapply(leftcell, function(x) mn[x][,1])   # sst at focal and neighbouring cells
         # if warming (cooling), need a suitable neighbour with cooler (warmer) local temperatures
         for(k in 1:length(leftcell)){
           leftcell[k] <- ifelse(vel[focal[k]][,1]>0 & sum(sst[[k]] < mn[focal[k]][,1]) > 0, leftcell[[k]][which.min(sst[[k]])],
